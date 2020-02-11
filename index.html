@@ -1,0 +1,52 @@
+<style>
+  .sidebar { width: 100%; display: flex; flex-direction: column; }
+  .block {
+    display: flex;
+    flex-direction: row;
+    
+  }
+  input {
+    border: 1px solid gray;
+    border-radius: 4px;
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+  }
+  .hidden {
+   display: none;
+  }
+  .unique {
+   color: green;
+  }
+  .not-unique {
+   color: tomato;
+  }
+  </style>
+  <div class="sidebar">
+  <div class="col form-group">
+    <h3>Convert DOC to HTML</h3>
+    <div class="block">
+     <button id="convert">Convert To HTML</button>
+    </div>
+  </div>
+  </div>
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+   <script>
+     function success(htmlObject) {
+       // Use Showdown converter.
+      var md = new showdown.Converter();
+      console.log(md.makeHtml(htmlObject.html));
+     }
+
+     $(function() {
+       $('#convert').click(function() {
+        google.script.run.withSuccessHandler(success).ConvertToMarkdown();
+       });
+     });
+     
+   </script>
